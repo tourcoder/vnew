@@ -22,21 +22,33 @@ vnew_help() {
 
 vnew_create_component() {
   if [ -z "$1" ]; then
+    echo
     echo -e "${red}Error: No component name specified. ${none} "
+    echo
     echo "Run 'vnew --help' for more information."
+    echo
     exit 1
   fi
 
   if [ ! -d "src/components" ]; then
-    echo -e "${red}Error: You need to run this command in the project root directory.${none}" && exit 1
+    echo
+    echo -e "${red}Error: You need to run this command in the project root directory.${none}"
+    echo
+    exit 1
   fi
 
   if [[ "$1" =~ [^a-zA-Z0-9-_] ]]; then
-    echo -e "${red}Error: Component name is not valid. ${none}" && exit 1
+    echo
+    echo -e "${red}Error: Component name is not valid. ${none}"
+    echo
+    exit 1
   fi
 
   if [ -f "$1.vue" ]; then
-    echo -e "${red}Error: Component ${1}.vue already exists.${none}" && exit 1
+    echo
+    echo -e "${red}Error: Component ${1}.vue already exists.${none}"
+    echo
+    exit 1
   fi
 
   cd src/components
@@ -60,6 +72,7 @@ main(){
   else
     sudo curl -sL https://raw.githubusercontent.com/huabin/vnew/master/vnew -o /usr/local/bin/vnew
     sudo chmod +x /usr/local/bin/vnew
+    echo
     echo -e "${green}vnew installed, just run 'vnew --help'${none}" && exit 1
   fi
 }
