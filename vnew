@@ -23,7 +23,7 @@ vnew_help() {
 vnew_create_component() {
   if [ -z "$1" ]; then
     echo -e "${red}Error: No component name specified. ${none} "
-    echo "Usage: vnew your-component-name"
+    echo "Run 'vnew --help' for more information."
     exit 1
   fi
 
@@ -60,7 +60,7 @@ main(){
   else
     sudo curl -sL https://raw.githubusercontent.com/huabin/vnew/master/vnew -o /usr/local/bin/vnew
     sudo chmod +x /usr/local/bin/vnew
-    echo "vnew installed, just run 'vnew --help'" && exit 1
+    echo -e "${green}vnew installed, just run 'vnew --help'${none}" && exit 1
   fi
 }
 main $1
