@@ -18,6 +18,20 @@ curl https://raw.githubusercontent.com/huabin/vnew/master/vnew | bash
 Usage: vnew your-component-name
 ```
 
+### Component Template format
+
+```
+<script setup>
+
+</script>
+<template>
+    
+</template>
+<style scoped>
+
+</style>
+```
+
 ### How to Collaborate
 
 Please feel free to submit your PR or issue.
