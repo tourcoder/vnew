@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+#
+# vnew, short for vue new
+# Vue component template generator - Create a vue component template with one command
+# Should work on sh, dash, bash, ksh, zsh
+#
+# Copyright (C) 2022-present, Implemented by Bin Hua <https://bin.tourcoder.com>
+
+red='\033[31m'
+green='\033[32m'
+none='\033[37m'
+
+vnew_help() {
+  echo
+  echo "Vue component template generator"
+  echo
+  echo "Usage: vnew your-component-name"
+  echo 
+  echo "Note: Run this command in the the project root directory."
+  echo 
+}
+
+vnew_create_component() {
+  if [ -z "$1" ]; then
+    echo -e "${red}Error: No component name specified. ${none} "
+    echo "Usage: vnew your-component-name"
+    exit 1
+  fi
+
+  if [ ! -d "src/components" ]; then
+    echo -e "${red}Error: You need to run this command in the project root directory.${none}" && exit 1
+  fi
+
+  if [[ "$1" =~ [^a-zA-Z0-9-_] ]]; then
+    echo -e "${red}Error: Component name is not valid. ${none}" && exit 1
+  fi
+
+  if [ -f "$1.vue" ]; then
+    echo -e "${red}Error: Component ${1}.vue already exists.${none}" && exit 1
+  fi
+
+  cd src/components
+  touch "$1.vue"
+  echo -e "<script setup>\n\n</script>\n<template>\n\n</template>\n<style scoped>\n\n</style>" >> "$1.vue"
+  echo -e "${green}Success: Component ${1}.vue created.${none}"
+}
+
+main(){
+  if  [[ $(command -v vnew) ]]; then
+    case $1 in
+      -h|--help)
+        vnew_help
+        exit 0
+        ;;
+      *)
+        vnew_create_component $1
+        exit 1
+        ;;
+    esac
+  else
+    sudo curl -sL https://raw.githubusercontent.com/huabin/vnew/master/vnew -o /usr/local/bin/vnew
+    sudo chmod +x /usr/local/bin/vnew
+    echo "vnew installed, just run 'vnew --help'" && exit 1
+  fi
+}
+main $1
