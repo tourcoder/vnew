@@ -9,7 +9,7 @@ Vue component template generator
 ### Install
 
 ```
-curl https://raw.githubusercontent.com/huabin/vnew/master/vnew | bash
+curl https://raw.githubusercontent.com/tourcoder/vnew/master/vnew | bash
 ```
 
 ### How to use
