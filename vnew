@@ -70,7 +70,7 @@ main(){
         ;;
     esac
   else
-    sudo curl -sL https://raw.githubusercontent.com/huabin/vnew/master/vnew -o /usr/local/bin/vnew
+    sudo curl -sL https://raw.githubusercontent.com/tourcoder/vnew/master/vnew -o /usr/local/bin/vnew
     sudo chmod +x /usr/local/bin/vnew
     echo
     echo -e "${green}vnew installed, just run 'vnew --help'${none}" && exit 1
